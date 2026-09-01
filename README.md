@@ -1,13 +1,14 @@
-# TrinityCore Cata Classic 4.4.2 — Windows One-Click Compiler + Certificates generator
+# TrinityCore Cata Classic 4.4.2 — Windows One-Click Compiler + Certificates generator + Client Patcher
 
 Windows PowerShell scripts to build a **TrinityCore `cata_classic`** server from source
 (WoW **Cataclysm Classic 4.4.2**, build 60895) and to set up a **locally-trusted Battle.net
-login** so a portal-patched client can connect to it.
+login** so a portal-patched client can connect to it. Includes client patcher for clean client!
 
 | File | Purpose |
 |---|---|
 | `Compile-TrinityCore-CataClassic.ps1` | One-click build: tooling → dependencies → compile → databases → configs. **Stops after compiling** — never starts the servers. |
 | `make-bnet-cert.ps1` | Generates the self-signed login certificate and installs it into the Windows Root store. |
+| `ed25519_patch.ps1` | Patches clean client to allow local connection. |
 
 ---
 
@@ -17,8 +18,7 @@ login** so a portal-patched client can connect to it.
 - Run PowerShell **as Administrator** (both scripts need it: winget installs / `certutil`)
 - ~60–100 GB free disk for source, dependencies and build
 - **Patience**: vcpkg builds Boost (~30–90 min), the C++ build takes ~20–60+ min
-- A **4.4.2 (build 60895) client** with a portal-patched executable
-  (e.g. [`wow-patcher`](https://github.com/wowemulation-dev/wow-patcher)) — required to actually log in, not to build
+- A **4.4.2 (build 60895) client** with a portal-patched executable (use included patcher)
 - `openssl` on PATH for the cert script (it also checks the usual install locations:
   `C:\Program Files\OpenSSL-Win64\bin\openssl.exe`, vcpkg tool folder)
 
@@ -165,6 +165,12 @@ Required **hosts** entry on the client machine:
 ```
 bnetaccount create email@example.com <password>
 ```
+
+## 3. `ed25519_patch.ps1`
+
+Place both ed25519_patch.ps1 and ed25519_patch.bat into the same folder as your WowClassic.exe
+
+Run .bat, press Y on confirmation and it will produce WowClassic-ed25519.exe used to enter the game!
 
 ---
 
