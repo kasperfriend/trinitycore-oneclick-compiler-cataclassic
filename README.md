@@ -16,7 +16,7 @@ login** so a portal-patched client can connect to it. Includes client patcher fo
 
 - **Windows 10/11 x64**
 - Run PowerShell **as Administrator** (both scripts need it: winget installs / `certutil`)
-- ~60–100 GB free disk for source, dependencies and build
+- ~15–30 GB free disk for source, dependencies and build
 - **Patience**: vcpkg builds Boost (~30–90 min), the C++ build takes ~20–60+ min
 - A **4.4.2 (build 60895) client** with a portal-patched executable (use included patcher)
 - `openssl` on PATH for the cert script (it also checks the usual install locations:
